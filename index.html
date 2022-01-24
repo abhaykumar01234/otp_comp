@@ -62,12 +62,11 @@
             showTime();
         }
         function showTime(){
-            var seconds = 10;
+            let seconds = 10;
             timer.innerHTML = `00:${String(seconds).padStart(2, "0")}`
 
             let intervalId = null;
             intervalId = setInterval(() => {
-                console.log(intervalId);
                 if(seconds === 0){
                     timeBox.classList.toggle("show");
                     timeBtn.classList.toggle("show");
