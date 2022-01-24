@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+%flex{
+    display: flex;
+    align-items: center;
+}
+
+.center{
+    @extend %flex;
+    justify-content: center;
+}
+
+.between{
+    @extend %flex;
+    justify-content: space-between;
+}
+
+.txcenter{
+    text-align: center;
+}
+
+.mb-2{
+    margin-bottom: 2rem;
+}
+
+button{
+    border: none;
+    outline: none;
+}
+
+body{
+    min-height: 100vh;
+    background: #EBEAFA;
+}
+
+.form{
+    max-width: 370px;
+    background: #fff;
+    min-height: 90vh;
+    margin-top: 5vh;
+    padding: 4rem 1.5rem;
+    border-radius: 1rem;
+}
+
+.btn-back{
+    width: 3rem;
+    height: 3rem;
+    background: #EBEAFA;
+    border-radius: 50%;
+    padding: .5rem;
+    cursor: pointer;
+    color: #503F9C;
+}
+
+.btn-go{
+    width: 1.25rem;
+    height: 1.25rem;
+    background: rgba(#fff, 0.15);
+    border-radius: 50%;
+    padding: .15rem;
+}
+
+.btn{
+    padding: .5rem 1rem;
+    border-radius: 8rem;
+    letter-spacing: .1em;
+    cursor: pointer;
+    font-size: 0.9em;
+
+    &.full{
+        width: 100%;
+        text-align: left;
+        padding: 1rem 2.5rem;
+        border-radius: .5rem;
+    }
+
+    &.btn-primary{
+        background: #503F9C;
+        color: #fff;
+    }
+
+    &.btn-secondary{
+        background: rgba(#503F9C, 0.2);
+        color: #503F9C;
+        font-weight: 600;
+        letter-spacing: .05em;
+    }
+}
+
+.otp-wrapper{
+    $width: 300px;
+    $c1: #fff;
+    $c2: rgb(11, 93, 94);
+    $ct: transparent;
+
+    overflow: hidden;
+    width: $width;
+    padding-bottom: 5px;
+    margin: 2rem auto;
+
+    .otp-box{
+        position: sticky;
+        left: 0;
+
+        input.otp{
+            border: none;
+            outline: none;
+            background: $c1;
+            width: 120%;
+
+            background-image: linear-gradient(to right, $c1 0%, $c1 12.5%, $c2 12.5%, $c2 87.5%, $c1 87.5%);
+            background-position: 0 calc(100% - .5rem);
+            background-repeat: repeat-x;
+
+            background-size: $width/4 5px;
+            padding-left: 30px;
+            letter-spacing: 56px;
+            font-size: 2rem;
+            height: 80px;
+
+            &.digit6{
+                background-size: $width/6 5px;
+                padding-left: 20px;
+                letter-spacing: 35px;
+                font-size: 1.6rem;
+                height: 65px;
+            }
+
+            &.box{
+                background-image: linear-gradient(to right, $ct 0%, $ct 20%, $c1 20%, $c1 80%, $ct 80%),
+                                linear-gradient(to right, $c1 0%, $c1 12.5%, $c2 12.5%, $c2 87.5%, $c1 87.5%);
+                background-position: 0 5px, 0 calc(100% - .5rem);
+                background-size: $width/4 calc(100% - 10px);
+                background-repeat: repeat-x, repeat;
+                height: 55px;
+                font-size: 1.6rem;
+                letter-spacing: 61px;
+            }
+        }
+    }
+}
+
+.timeBtn, .timeBox{
+    display: none;
+}
+
+.timeBox{
+    padding: .5rem 0;
+}
+
+.timeBtn.show{
+    display: flex;
+}
+
+.timeBox.show{
+    display: block;
+}

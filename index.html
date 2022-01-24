@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP component</title>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+    <div class="container center">
+        <div class="form">
+            <button class="btn-back mb-2">
+                <svg class="icon-back" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M328 112 184 256l144 144"/></svg>
+            </button>
+            <h3 class="mb-2 txcenter">Enter the 6 digit verification code sent to you</h3>
+            <div class="otp-wrapper">
+                <div class="otp-box">
+                    <input type="tel" class="otp digit6" maxlength="6" 
+                    oninput="handleInput(this);"
+                    onclick="PosEnd(this);"
+                    >
+                </div>
+            </div>
+            <div class="between mb-2 timeBtn show">
+                <h5 class="center">Didn't get the code?</h5>
+                <div class="btn btn-secondary" onclick="startTimer();">Resend</div>
+            </div>
+            <h5 class="mb-2 txcenter timeBox">Resend code in <span id="timer">00:00</span></h5>
+            <div class="otp-wrapper">
+                <div class="otp-box">
+                    <input type="tel" class="otp" maxlength="4" 
+                    oninput="handleInput(this);"
+                    onclick="PosEnd(this);"
+                    >
+                </div>
+            </div>
+            
+            <h5 class="mb-2 txcenter">Enter Your Pin</h5>
+            <div class="otp-wrapper">
+                <div class="otp-box">
+                    <input type="tel" class="otp box" maxlength="4" 
+                    oninput="handleInput(this);"
+                    onclick="PosEnd(this);"
+                    >
+                </div>
+            </div>
+            <button class="btn btn-primary full between">
+                <span>Verify</span>
+                <svg class="btn-go" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
+            </button>
+        </div>
+    </div>
+    <script>
+        const timer = document.querySelector('#timer');
+        const timeBtn = document.querySelector('.timeBtn');
+        const timeBox = document.querySelector('.timeBox');
+        
+        function startTimer(){
+            timeBox.classList.toggle("show");
+            timeBtn.classList.toggle("show");
+            showTime();
+        }
+        function showTime(){
+            var seconds = 10;
+            timer.innerHTML = `00:${String(seconds).padStart(2, "0")}`
+
+            let intervalId = null;
+            intervalId = setInterval(() => {
+                console.log(intervalId);
+                if(seconds === 0){
+                    timeBox.classList.toggle("show");
+                    timeBtn.classList.toggle("show");
+                    clearInterval(intervalId);
+                    return;
+                }
+
+                seconds -= 1;
+                timer.innerHTML = `00:${String(seconds).padStart(2, "0")}`
+            }, 1000);
+        }
+
+        function PosEnd(input) {
+            var len = input.value.length;
+            // Mostly for Web Browsers
+            if (input.setSelectionRange) {
+                input.focus();
+                input.setSelectionRange(len, len);
+            } else if (input.createTextRange) {
+                var t = input.createTextRange();
+                t.collapse(true);
+                t.moveEnd('character', len);
+                t.moveStart('character', len);
+                t.select();
+            }
+        }
+
+        function handleInput(ip){
+            ip.value = ip.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+        }
+    </script>
+</body>
+</html>
